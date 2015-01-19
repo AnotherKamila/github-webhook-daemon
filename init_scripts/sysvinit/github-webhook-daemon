@@ -1,0 +1,36 @@
+#!/bin/sh
+
+NAME=github-webhook-daemon
+SELF=/etc/init.d/$NAME
+CONF=/etc/$NAME.conf
+BIN=/usr/local/bin/$NAME.py
+LOG=/dev/null
+PIDF=/var/run/$NAME.pid
+
+do_start() {
+	start-stop-daemon --start --exec $BIN $CONF >> $LOG --pidfile $PIDF \
+		--background
+}
+
+do_stop() {
+	start-stop-daemon --stop --pidfile $PIDF
+}
+
+case "$1" in
+	start)
+		do_start
+		;;
+	stop)
+		do_stop
+		;;
+	restart)
+		do_stop
+		do_start
+		;;
+	*)
+		echo "Usage: $SELF {start|stop|restart}"
+		exit 1
+		;;
+esac
+
+exit 0

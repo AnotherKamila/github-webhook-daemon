@@ -18,6 +18,8 @@ BIN=/usr/local/bin/$NAME.py
 LOG=/var/log/$NAME.log
 PIDF=/var/run/$NAME.pid
 
+. /lib/lsb/init-functions
+
 do_start() {
 	start-stop-daemon --start --chuid $USER --pidfile $PIDF --background \
 		$BIN $CONF >> $LOG

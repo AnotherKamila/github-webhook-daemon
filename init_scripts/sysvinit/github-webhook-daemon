@@ -1,4 +1,13 @@
 #!/bin/sh
+### BEGIN INIT INFO
+# Provides:          github-webhook-daemon
+# Required-Start:    $local_fs $network
+# Required-Stop:     $local_fs $network
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Calls a shell command when a webhook notification is received
+# Description: Calls a shell command when a webhook notification is received
+### END INIT INFO
 
 NAME=github-webhook-daemon
 SELF=/etc/init.d/$NAME

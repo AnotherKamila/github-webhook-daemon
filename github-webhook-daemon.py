@@ -6,6 +6,8 @@ from subprocess import call
 
 CONFIG_PATH = sys.argv[1] if len(sys.argv) > 1 else './config.json'
 
+sys.stdout = os.fdopen(sys.stdout.fileno(), 'w', 0)  # reopen without buffering
+
 class GWD(http.server.SimpleHTTPRequestHandler):
     config = None
 

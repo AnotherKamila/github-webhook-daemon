@@ -4,8 +4,8 @@
         {  
             "url": "https://github.com/trojsten/web",
 
-            "ref": "if undefined, command will be called after push to any branch",
-            "ref": "refs/heads/master",
+            "refs": "if undefined, command will be called after push to any branch",
+            "refs": ["refs/heads/master"],
 
             "command": "echo it works"
         }

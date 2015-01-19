@@ -62,7 +62,7 @@ class GWD(http.server.SimpleHTTPRequestHandler):
     def maybe_deploy(self, repo, ref):
         try:
             conf = self.get_repo_config(repo)
-            if conf.get('ref') == None or ref == conf['ref']:
+            if conf.get('refs') == None or ref in conf['refs']:
                 print('deploying for {} (push to {}): {}'
                           .format(repo, ref, conf['command']))
                 call(conf['command'], shell=True)

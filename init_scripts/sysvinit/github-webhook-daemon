@@ -18,15 +18,13 @@ BIN=/usr/local/bin/$NAME.py
 LOG=/var/log/$NAME.log
 PIDF=/var/run/$NAME.pid
 
-. /lib/lsb/init-functions
-
 do_start() {
-	start-stop-daemon --start --chuid $USER --pidfile $PIDF --background \
-		$BIN $CONF >> $LOG
+	start-stop-daemon --start --chuid $USER --pidfile $PIDF --make-pidfile --background --startas /bin/sh -- -c "exec $BIN $CONF >> $LOG"
 }
 
 do_stop() {
 	start-stop-daemon --stop --pidfile $PIDF
+	rm -f $PIDF
 }
 
 case "$1" in

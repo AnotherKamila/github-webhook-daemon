@@ -9,16 +9,18 @@
 # Description: Calls a shell command when a webhook notification is received
 ### END INIT INFO
 
+USER=autodeploy
+
 NAME=github-webhook-daemon
 SELF=/etc/init.d/$NAME
 CONF=/etc/$NAME.conf
 BIN=/usr/local/bin/$NAME.py
-LOG=/dev/null
+LOG=/var/log/$NAME.log
 PIDF=/var/run/$NAME.pid
 
 do_start() {
-	start-stop-daemon --start --exec $BIN $CONF >> $LOG --pidfile $PIDF \
-		--background
+	start-stop-daemon --start --chuid $USER --pidfile $PIDF --background \
+		$BIN $CONF >> $LOG
 }
 
 do_stop() {

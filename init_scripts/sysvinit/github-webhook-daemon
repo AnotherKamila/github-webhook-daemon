@@ -19,7 +19,7 @@ LOG=/var/log/$NAME.log
 PIDF=/var/run/$NAME.pid
 
 do_start() {
-	start-stop-daemon --start --chuid $USER --pidfile $PIDF --make-pidfile --background --startas /bin/sh -- -c "exec $BIN $CONF >> $LOG"
+	start-stop-daemon --start --chuid $USER --pidfile $PIDF --make-pidfile --background --startas /bin/sh -- -c "exec $BIN $CONF >> $LOG 2>> $LOG"
 }
 
 do_stop() {
